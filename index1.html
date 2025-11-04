@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Bites - Rstaurant Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="C:\Users\Administrator\Desktop\Pyronic Tech\Images\IMG_20250922_053326.jpg" alt="Logo">
+                    <h1><span>Classic</span><span>Bites</span></h1>
+                </div>
+
+                <button class="hamburger" id="hamburger">
+                    <i class="fa-solid fa-burger"></i>
+                </button>
+
+                <nav class="nav-menu" id="nav-menu">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#menu"><i class="fas fa-utensils"></i> Menu</a></li>
+                        <li><a href="#contact"><i class="fas fa-phone"></i> Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Fine Dinning Experience With Great Taste</h2>
+            <p>Experinece the culinary excellence with our crafted menu, featuring the finest
+                ingredients and innovative flavours satisfying your taste buds to the fullest.</p>
+        </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2>Our Menu</h2>
+            <p class="menu-description">Discover our exquisite selection of menus prepared by our
+                master chiefs with the finest and freshest ingredinets.
+            </p>
+
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="starters">Starters</button>
+                <button class="filter-btn" data-category="main">Main</button>
+                <button class="filter-btn" data-category="course">Course</button>
+                <button class="filter-btn" data-category="desserts">Desserts</button>
+                <button class="filter-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search for dishes">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-grid" id="menu-grid">
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact-Info</h3>
+                    <p><i class="fas fa-envelope"></i> 123 Gourmet Avenue Food Street</p>
+                    <p><i class="fas fa-phone"></i> +923106642704</p>
+                    <p><i class="fas fa-envelope"></i> info@classicbites.com</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <p>Monday-Friday: 11:00 AM - 10:00 PM</p>
+                    <p>Saturday-Sunday: 10:00 AM - 11:00 PM</p>
+                    <p>Holidays: 12:00 PM - 9:00 PM</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Follow-US</h3>
+                    <p>Stay connected with us on social media</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Classic Bites, All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>

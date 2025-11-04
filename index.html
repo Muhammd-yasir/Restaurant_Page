@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Bites - Rstaurant Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-color: #8B4513;
+    --secondary-color: #D2691E;
+    --accent-color: #F4A460;
+    --light-color: #F5F5DC;
+    --dark-color: #2F2F2F;
+    --text-color: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: #f9f9f9;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.nav-menu a:hover {
+    color: var(--accent-color);
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('images/restaurant-interior.jpg');
+
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.menu-section {
+    padding: 2rem 0;
+}
+
+.menu-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.menu-description {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: #666;
+}
+
+.category-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 2rem 0;
+}
+
+.filter-btn {
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 2rem;
+}
+
+.search-bar {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid var(--primary-color);
+    border-right: none;
+    border-radius: 30px 0 0 30px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: var(--secondary-color);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.menu-item {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.item-content {
+    padding: 1.5rem;
+}
+
+.item-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.item-content p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.item-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.add-to-cart {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: var(--secondary-color);
+}
+
+.footer {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 3rem 0 1rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.footer-section p, .footer-section a {
+    color: #ccc;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: var(--accent-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.social-links a:hover {
+    background-color: var(--accent-color);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .nav-menu {
+        display: none;
+        width: 100%;
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Images\IMG_20250922_053326.jpg" alt="Logo">
+                    <h1><span>Classic</span><span>Bites</span></h1>
+                </div>
+
+                <button class="hamburger" id="hamburger">
+                    <i class="fa-solid fa-burger"></i>
+                </button>
+
+                <nav class="nav-menu" id="nav-menu">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#menu"><i class="fas fa-utensils"></i> Menu</a></li>
+                        <li><a href="#contact"><i class="fas fa-phone"></i> Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Fine Dinning Experience With Great Taste</h2>
+            <p>Experinece the culinary excellence with our crafted menu, featuring the finest
+                ingredients and innovative flavours satisfying your taste buds to the fullest.</p>
+        </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2>Our Menu</h2>
+            <p class="menu-description">Discover our exquisite selection of menus prepared by our
+                master chiefs with the finest and freshest ingredinets.
+            </p>
+
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="starters">Starters</button>
+                <button class="filter-btn" data-category="main">Main</button>
+                <button class="filter-btn" data-category="course">Course</button>
+                <button class="filter-btn" data-category="desserts">Desserts</button>
+                <button class="filter-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search for dishes">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-grid" id="menu-grid">
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact-Info</h3>
+                    <p><i class="fas fa-envelope"></i> 123 Gourmet Avenue Food Street</p>
+                    <p><i class="fas fa-phone"></i> +923106642704</p>
+                    <p><i class="fas fa-envelope"></i> info@classicbites.com</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <p>Monday-Friday: 11:00 AM - 10:00 PM</p>
+                    <p>Saturday-Sunday: 10:00 AM - 11:00 PM</p>
+                    <p>Holidays: 12:00 PM - 9:00 PM</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Follow-US</h3>
+                    <p>Stay connected with us on social media</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Classic Bites, All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script>
+    const menuItems = [
+    {
+        id: 1,
+        name: "Bruschetta",
+        category: "starters",
+        price: 8.99,
+        description: "Toasted bread toppped with tomatoes, garlic and fresh basil",
+        image: "https://media.istockphoto.com/id/481765835/photo/homemade-italian-bruschetta-appetizer.jpg?s=612x612&w=0&k=20&c=20lme_vcpR4R2wfNyAFwvglvSj3mxJU9qel00LqzP3I="
+    },
+    {
+        id: 2,
+        name: "Calamari",
+        category: "starters",
+        price: 12.99,
+        description: "Crispy fried squid served with lemon",
+        image: "https://media.istockphoto.com/id/478735844/photo/homemade-breaded-fried-calamari.jpg?s=612x612&w=0&k=20&c=1FBLKYjUZgbCVU7aXn4FfZ-nXRnhhpNB_Q7_-SKJaCs="
+    },
+    {
+        id: 3,
+        name: "Caprese Salad",
+        category: "starters",
+        price: 10.99,
+        description: "Fresh mozarilla with tomatoes and basil",
+        image: "https://media.istockphoto.com/id/1345888788/photo/caprese-salad.jpg?s=612x612&w=0&k=20&c=cvxuF6osxtSktuBP4tsHkb46547-HU9W-K8_rSq5UGY="
+    },
+    {
+        id: 4,
+        name: "Grilled Salmon",
+        category: "main",
+        price: 24.99,
+        description: "Roasted salmon with lemon butter sause and vegetables",
+        image: "https://media.istockphoto.com/id/1214416414/photo/barbecued-salmon-fried-potatoes-and-vegetables-on-wooden-background.jpg?s=612x612&w=0&k=20&c=Y8RYbZFcvec-FXMMuoU-qkprC3TUFNiw3Ysoe8Drn6g="
+    },
+    {
+        id: 5,
+        name: "Filet Mignon",
+        category: "main",
+        price: 32.99,
+        description: "Tender beef with mash potatoes",
+        image: "https://media.istockphoto.com/id/1337583771/photo/a-large-grilled-filet-mignon-steak-with-butter-and-thyme-is-served-chopped-on-a-wooden-board.jpg?s=612x612&w=0&k=20&c=E_LPB7wNiAnF_xBnUJAaX2cUrIKsB-XtKGjRmunLc7o="
+    },
+    {
+        id: 6,
+        name: "Mushroom Risoto",
+        category: "main",
+        price: 18.99,
+        description: "Creamy rice with wild mashrooms and parmesan",
+        image: "https://media.istockphoto.com/id/1369183332/photo/risotto-with-brown-champignon-mushrooms.jpg?s=612x612&w=0&k=20&c=hXubXk9pxjZbSR436lNbNWMrbGd37Y3v3DaopBoU84M="
+    },
+    {
+        id: 7,
+        name: "Chocolate Lava Cake",
+        category: "desserts",
+        price: 9.99,
+        description: "Warm chocolate cake with warm center",
+        image: "https://media.istockphoto.com/id/544716244/photo/warm-chocolate-lava-cake-with-molten-center-and-red-currants.jpg?s=612x612&w=0&k=20&c=i1rRa1x7D1pu-INKabmC21BaU9MC8ZRQdcC7dBLdzUo="
+    },
+    {
+        id: 8,
+        name: "Ice-Cream",
+        category: "desserts",
+        price: 8.99,
+        description: "All flavoured ice-cream with crispy toppings",
+        image: "https://t4.ftcdn.net/jpg/01/53/66/45/360_F_153664577_gzalhQomv1V2eaDkEmjnTadRjGNTLzur.jpg"
+    },
+    {
+        id: 9,
+        name: "Custurds & Pudding",
+        category: "desserts",
+        price: 9.99,
+        description: "Custured made with based cream milked with puddings",
+        image: "https://media.istockphoto.com/id/1328873662/photo/homemade-pudding-soft-vanilla-dessert-in-cup-mold-shape.jpg?s=612x612&w=0&k=20&c=V_EJa4wTNIbi9TgWHkJDkRvwGC1MeDkU9TO36PmUjSg="
+    },
+    {
+        id: 10,
+        name: "Cock-Tails",
+        category: "drinks",
+        price: 6.99,
+        description: "Cocktails made with premium spirits and freshed ingredients",
+        image: "https://media.istockphoto.com/id/502072256/photo/craft-cocktail-assortment-on-well-lit-bar.jpg?s=612x612&w=0&k=20&c=zmxOgUMZW1kB--D-g8RABi391Ma39zemxeUyjWFb7R0="
+    },
+    {
+        id: 11,
+        name: "Juices",
+        category: "drinks",
+        price: 5.99,
+        description: "Freshley squezed juice of all fruits",
+        image: "https://media.istockphoto.com/id/1253099922/photo/assortment-of-fresh-fruits-and-vegetables-juices-in-rainbow-colors.jpg?s=612x612&w=0&k=20&c=lFC0lAcR0FoPegoMTuJxc3fEAISbJVwZ1VmWNHzVEX8="
+    },
+    {
+        id: 12,
+        name: "Milkshakes",
+        category: "drinks",
+        price: 4.99,
+        description: "Freshley made milkshakes",
+        image: "https://www.shutterstock.com/image-photo/three-sweet-milkshakes-nuts-caramel-260nw-1227880981.jpg"
+    },
+    {
+        id: 13,
+        name: "BBQ",
+        category: "course",
+        price: 15.99,
+        description: "Traditional BBQ",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQofhDY1AlZkkPsXkC2sHIQLpYD3-OhUviu6w&s"
+    },
+    {
+        id: 14,
+        name: "Karahi",
+        category: "course",
+        price: 20.99,
+        description: "Traditional spicy karahi in beef, mutton and chicken",
+        image: "https://t4.ftcdn.net/jpg/07/81/89/07/360_F_781890767_KusWLfsTqrAnry4cYtu7V0w4vrOh8x8r.jpg"
+    },
+    {
+        id: 15,
+        name: "Biryani",
+        category: "course",
+        price: 15.99,
+        description: "Spice biryani with salad",
+        image: "https://www.shutterstock.com/image-photo/hyderabadi-chicken-biryani-aromatic-flavorful-600nw-2497040151.jpg"
+    },
+];
+
+const menuGrid = document.getElementById("menu-grid");
+const filterBtns = document.querySelectorAll(".filter-btn");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+function displayMenuItems(items) {
+    menuGrid.innerHTML = '';
+
+    if (items.length === 0) {
+        menuGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; font-size: 1.2rem;">No items found matching your criteria.</p>';
+        return;
+    }
+
+    items.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('menu-item');
+        menuItem.setAttribute('data-category', item.category);
+
+        menuItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-content">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <div class="item-price">
+                    <span class="price">$${item.price.toFixed(2)}</span>
+                </div>
+            </div>
+        `;
+
+        menuGrid.appendChild(menuItem);
+    });
+}
+
+function filterbyCategory(category){
+    if(category === 'all'){
+        displayMenuItems(menuItems);
+    }
+    else{
+        const filteredItems = menuItems.filter(item => item.category === category);
+        displayMenuItems(filteredItems);
+    }
+};
+
+function searchMenu(){
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    if (searchTerm === ''){
+        const activeCategory = document.querySelector(".filter-btn.active").dataset.category;
+        filterbyCategory(activeCategory);
+        return; 
+    }
+
+    const filteredItems = menuItems.filter(item => 
+        item.name.toLowerCase().includes(searchTerm) ||
+        item.description.toLowerCase().includes(searchTerm)
+    );
+
+    displayMenuItems(filteredItems);
+};
+
+filterBtns.forEach(btn =>{
+    btn.addEventListener('click', () =>{
+        filterBtns.forEach(button => button.classList.remove('active'));
+        btn.classList.add('active');
+        filterbyCategory(btn.dataset.category);
+    });
+});
+
+searchBtn.addEventListener('click', searchMenu);
+searchInput.addEventListener('keyup', searchMenu);
+
+hamburger.addEventListener('click', () =>{
+    navMenu.classList.toggle('active');
+});
+
+displayMenuItems(menuItems);
+
+</script>
+
+</html>
