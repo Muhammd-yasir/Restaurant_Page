@@ -5,7 +5,6 @@ A beautiful and interactive restaurant website with smooth animations and engagi
 🎯 Responsive Design - Works perfectly on all devices
 🔍 Interactive Menu - Filter by category (Starters, Main, Course, Desserts, Drinks)
 📱 Mobile-Friendly - Hamburger menu with smooth transitions
-🛒 Add to Cart - Interactive cart system with visual feedback
 ⚡ Live Search - Real-time search functionality
 🎨 Smooth Animations - Hover effects and transitions
 
